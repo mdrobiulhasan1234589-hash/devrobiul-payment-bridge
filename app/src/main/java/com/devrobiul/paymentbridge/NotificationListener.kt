@@ -36,7 +36,6 @@ class NotificationListener : NotificationListenerService() {
 
             val packageName = sbn.packageName ?: return
 
-            // Only process notifications from payment provider apps
             if (!isPaymentSourcePackage(packageName)) return
 
             if (!Prefs.isMonitoringEnabled(applicationContext)) {
@@ -46,15 +45,19 @@ class NotificationListener : NotificationListenerService() {
 
             LogManager.add(applicationContext, "DEBUG", "📩 Notification from: $packageName")
 
-            val extras = sbn.notification?.extras ?: return
+            val notification = sbn.notification ?: return
+            val extras = notification.extras ?: return
 
-            val title = extras.getCharSequence(Notification.EXTRA_TITLE)?.toString() ?: ""
-            val text = extras.getCharSequence(Notification.EXTRA_TEXT)?.toString() ?: ""
-            val bigText = extras.getCharSequence(Notification.EXTRA_BIG_TEXT)?.toString() ?: ""
+            val title = safeString(extras.getCharSequence(Notification.EXTRA_TITLE))
+            val text = safeString(extras.getCharSequence(Notification.EXTRA_TEXT))
+            val bigText = safeString(extras.getCharSequence(Notification.EXTRA_BIG_TEXT))
+            val subText = safeString(extras.getCharSequence(Notification.EXTRA_SUB_TEXT))
+            val infoText = safeString(extras.getCharSequence(Notification.EXTRA_INFO_TEXT))
+            val summaryText = safeString(extras.getCharSequence(Notification.EXTRA_SUMMARY_TEXT))
             val textLines = extras.getCharSequenceArray(Notification.EXTRA_TEXT_LINES)
-                ?.joinToString(" ") { it.toString() } ?: ""
+                ?.joinToString(" ") { safeString(it) } ?: ""
 
-            val combinedText = listOf(text, bigText, textLines)
+            val combinedText = listOf(text, bigText, subText, infoText, summaryText, textLines)
                 .filter { it.isNotBlank() }
                 .joinToString(" ")
                 .ifBlank { text }
@@ -62,7 +65,7 @@ class NotificationListener : NotificationListenerService() {
             LogManager.add(
                 applicationContext,
                 "DEBUG",
-                "📝 Title: $title | Text: ${combinedText.take(120)}"
+                "📝 Title: $title | Text: ${combinedText.take(200)}"
             )
 
             if (combinedText.isBlank() && title.isBlank()) return
@@ -129,19 +132,41 @@ class NotificationListener : NotificationListenerService() {
 
     override fun onNotificationRemoved(sbn: StatusBarNotification?) { }
 
+    private fun safeString(cs: CharSequence?): String {
+        return try {
+            cs?.toString()?.trim() ?: ""
+        } catch (_: Exception) {
+            ""
+        }
+    }
+
+    /**
+     * Payment apps AND SMS/Messages apps — because SMS contains the full
+     * message text which is much more reliable than the app's own notification.
+     */
     private fun isPaymentSourcePackage(pkg: String): Boolean {
         return when (pkg) {
-            // bKash
+            // ─── bKash ───
             "com.bKash.customerapp" -> true
             "com.bkash.customerapp" -> true
 
-            // Nagad
+            // ─── Nagad ───
             "com.konasl.nagad" -> true
             "com.nagad.app" -> true
 
-            // Rocket
+            // ─── Rocket ───
             "com.dbbl.mbs.apps.rocket" -> true
             "com.dbbl.mbs" -> true
+
+            // ─── SMS / Messages apps (all common ones) ───
+            "com.google.android.apps.messaging" -> true   // Google Messages
+            "com.android.mms" -> true                     // Legacy Android Messages
+            "com.android.messaging" -> true               // Android Messages
+            "com.samsung.android.messaging" -> true       // Samsung Messages
+            "com.transsion.smartmessage" -> true          // Infinix/Tecno
+            "com.transsion.messaging" -> true
+            "com.transsion.smart.chat" -> true
+            "com.android.mms.service" -> true
 
             else -> false
         }
