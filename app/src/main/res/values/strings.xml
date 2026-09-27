@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dev Robiul Payment Bridge</string>
+
+    <string name="title_app">DEV ROBIUL</string>
+    <string name="subtitle_app">PAYMENT BRIDGE</string>
+    <string name="title_status">STATUS</string>
+    <string name="title_last_payment">LAST PAYMENT</string>
+
+    <string name="label_service_status">Service Status</string>
+    <string name="label_access_status">Notification Access</string>
+    <string name="label_firebase_status">Firebase</string>
+
+    <string name="btn_start">START MONITORING</string>
+    <string name="btn_stop">STOP MONITORING</string>
+    <string name="btn_open_access">OPEN NOTIFICATION ACCESS</string>
+    <string name="btn_test_connection">TEST CONNECTION</string>
+    <string name="btn_settings">SETTINGS</string>
+    <string name="btn_logs">LOGS</string>
+    <string name="btn_history">HISTORY</string>
+
+    <string name="dialog_settings_title">Firebase Settings</string>
+    <string name="label_firebase_section">Firebase Configuration</string>
+    <string name="label_api_key">API Key</string>
+    <string name="label_db_url">Database URL</string>
+    <string name="label_project_id">Project ID</string>
+    <string name="label_app_id">App ID</string>
+    <string name="label_sender_id">Sender ID (Optional)</string>
+    <string name="label_data_path">Data Path</string>
+
+    <string name="hint_api_key">AIzaSy...</string>
+    <string name="hint_db_url">https://your-project.firebaseio.com</string>
+    <string name="hint_project_id">your-project-id</string>
+    <string name="hint_app_id">1:1234567890:web:abc123</string>
+    <string name="hint_sender_id">1234567890</string>
+    <string name="hint_data_path">XNXANIKPAY</string>
+
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_ok">OK</string>
+
+    <string name="no_payments_yet">No payments yet</string>
+</resources>
