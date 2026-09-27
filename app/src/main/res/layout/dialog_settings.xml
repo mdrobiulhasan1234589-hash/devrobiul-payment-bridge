@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_primary"
+    android:maxHeight="520dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/bg_primary"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_firebase_section"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="14dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_api_key"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etFirebaseApiKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_api_key"
+            android:inputType="text"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_muted"
+            android:backgroundTint="@color/accent_blue"
+            android:layout_marginBottom="12dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_db_url"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etFirebaseDbUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_db_url"
+            android:inputType="textUri"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_muted"
+            android:backgroundTint="@color/accent_blue"
+            android:layout_marginBottom="12dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_project_id"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etFirebaseProjectId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_project_id"
+            android:inputType="text"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_muted"
+            android:backgroundTint="@color/accent_blue"
+            android:layout_marginBottom="12dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_app_id"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etFirebaseAppId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_app_id"
+            android:inputType="text"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_muted"
+            android:backgroundTint="@color/accent_blue"
+            android:layout_marginBottom="12dp"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_sender_id"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etFirebaseSenderId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_sender_id"
+            android:inputType="number"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_muted"
+            android:backgroundTint="@color/accent_blue"
+            android:layout_marginBottom="16dp"
+            android:importantForAutofill="no" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_data_path"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etDataPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_data_path"
+            android:inputType="text"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_muted"
+            android:backgroundTint="@color/accent_blue"
+            android:layout_marginBottom="16dp"
+            android:importantForAutofill="no" />
+
+    </LinearLayout>
+</ScrollView>
