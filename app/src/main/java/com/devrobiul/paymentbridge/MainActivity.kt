@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnHistory: Button
 
     private val NOTIF_PERMISSION_CODE = 201
+    private val SMS_PERMISSION_CODE = 202
     private var lastTestTime = 0L
     private val TEST_CACHE_MS = 60_000L
 
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         bindViews()
         setupListeners()
         requestNotificationPermissionIfNeeded()
+        requestSmsPermissionIfNeeded()
     }
 
     override fun onResume() {
@@ -369,6 +371,27 @@ class MainActivity : AppCompatActivity() {
                     NOTIF_PERMISSION_CODE
                 )
             }
+        }
+    }
+
+    private fun requestSmsPermissionIfNeeded() {
+        val hasReceive = ContextCompat.checkSelfPermission(
+            this, Manifest.permission.RECEIVE_SMS
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val hasRead = ContextCompat.checkSelfPermission(
+            this, Manifest.permission.READ_SMS
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (!hasReceive || !hasRead) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.RECEIVE_SMS,
+                    Manifest.permission.READ_SMS
+                ),
+                SMS_PERMISSION_CODE
+            )
         }
     }
 }
